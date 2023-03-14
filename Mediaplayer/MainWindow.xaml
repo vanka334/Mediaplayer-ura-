@@ -1,0 +1,82 @@
+﻿<Window x:Class="Mediaplayer.MainWindow"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mediaplayer"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" >
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FF723EE6"/>
+            <GradientStop Color="#FFAD9DD2" Offset="1"/>
+            <GradientStop Color="#FFA784F3" Offset="0.498"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.3*"/>
+
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="3">
+
+            <Button x:Name="Random_Song" Click="Random_Song_Click" Margin="0,0,0,0" VerticalAlignment="Center" Width="60"  Height="60" Grid.Column="4"
+               Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                  ToolTip="MaterialDesignFloatingActionDarkButton"
+                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" ClickMode="Press">
+
+                <Image Source="icons8-перемешать-50 (1).png" Width="35"/>
+            </Button>
+
+            <Button x:Name="Song_Plus" Click="Song_Plus_Click" Margin="10,0,10,0" VerticalAlignment="Center" Height="61" Grid.Column="2"
+              Style="{StaticResource MaterialDesignRaisedDarkButton}"              
+              ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"             
+              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
+                <Image Source="C:\Users\Vanya\OneDrive\Рабочий стол\проекти)\Mediaplayer\Mediaplayer\icons8-перемотка-назад-50 (3).png"/>
+            </Button>
+            <Button x:Name="Repeat" Click="Repeat_Click" Margin="10,0,10,0" VerticalAlignment="Center" Width="60" Height="60" Grid.Column="3"
+              Style="{StaticResource MaterialDesignFloatingActionDarkButton}"
+                  ToolTip="MaterialDesignFloatingActionDarkButton"
+                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}">
+                <Image Source="icons8-воспоминания-50 (1).png" Width="35"/>
+            </Button>
+            <Button x:Name="Song_Minus" Click="Song_Minus_Click" Margin="10,0,10,0" VerticalAlignment="Center" Height="61"
+              Style="{StaticResource MaterialDesignRaisedDarkButton}"              
+              ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"             
+              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
+                <Image Source="\icons8-перемотка-назад-50 (2).png"/>
+            </Button>
+            <Button x:Name="Play_Pause" Click="Play_Pause_Click" Margin="10,0,10,0" VerticalAlignment="Center" Height="61" Grid.Column="1"
+              Style="{StaticResource MaterialDesignRaisedDarkButton}"              
+              ToolTip="Resource name: MaterialDesignRaisedLightDarkButton"             
+              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}" >
+                <Image x:Name="PlayorPause" Source="/icons8-воспроизведение-50 (1).png"/>
+            </Button>
+            <Slider x:Name="sliderVolume" ValueChanged="sliderVolume_ValueChanged" Grid.Column="5" VerticalAlignment="Center" Margin="40,0,40,0" Height="30"
+              Minimum="0"
+              Maximum="10"
+              
+              Foreground="#FFAB0000" 
+              
+              />
+            <TextBlock Grid.Column="5" Text="Звук" VerticalAlignment="Top" HorizontalAlignment="Center"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+        </Grid>
+        <TextBlock x:Name="Timer" Grid.Row="2" Width="90" Height="15" HorizontalAlignment="Left" VerticalAlignment="Bottom" Text="0:00/0:00" TextAlignment="Center"/>
+        <MediaElement x:Name="media" LoadedBehavior="Manual" MediaOpened="media_MediaOpened" MediaEnded="media_MediaEnded"/>
+        <Button x:Name="OpenFile" Content="Открыть Файл" FontSize="15" Margin="0,0,0,5" Click="OpenFile_Click"/>
+        <ListBox x:Name="Songs" Grid.Row="1" SelectionChanged="Songs_SelectionChanged"/>
+        <Slider x:Name="sliderauto" Grid.Row="2" Foreground="#FFE2C400" ValueChanged="Slider_ValueChanged"  Margin="10,0,10,81" Grid.RowSpan="2" />
+    </Grid>
+</Window>
